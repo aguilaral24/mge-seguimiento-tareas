@@ -1,0 +1,5 @@
+root - INFO - *****Beggining EDA*****
+root - INFO - Preprocessing-Loading data...
+root - INFO - Preprocessing-Getting shape an duplicated data
+root - INFO - Preprocessing-Displaying plots
+root - INFO - *****End of EDA*****
