@@ -1,7 +1,7 @@
 import logging
 #COnfigure logging
 logging.basicConfig(
-    filename='../logs/T_03.log',
+    filename='../logs/log.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
@@ -14,19 +14,19 @@ logging.info('*****Beggining of the process*****')
 
 logging.info('Executing EDA...')
 try:
-    execfile('./EDA.py')
+    exec(open('./EDA.py').read())
 except Exception as e:
   logging.exception("Exception occurred while trying to execute EDA.py")
 
 logging.info('Executing preprocessing...')
 try:
-    execfile('./preprocessing.py')
+    exec(open('./preprocessing.py').read())
 except Exception as e:
   logging.exception("Exception occurred while trying to execute preprocessing.py")
 
 logging.info('Executing modeling...')
 try:
-    execfile('./model.py')
+    exec(open('./model.py').read())
 except Exception as e:
   logging.exception("Exception occurred while trying to execute model.py")
 

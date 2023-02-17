@@ -1,7 +1,7 @@
 import logging
 #COnfigure logging
 logging.basicConfig(
-    filename='../logs/T_03-model.log',
+    filename='../logs/model.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
@@ -15,6 +15,7 @@ import seaborn as sns
 # Model
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
+from functions import read_testing_data
 
 logging.info('*****Beggining of Modeling*****')
 logging.info('MOdel-Loading cleaned data...')
@@ -24,29 +25,24 @@ train_data = pd.DataFrame()
 test_data = pd.DataFrame()
 
 try:
-    train_data = pd.read_csv("../data/cleaned_train.csv")
+    cleaned_train_data = pd.read_csv("../data/cleaned_train.csv")
 except FileNotFoundError as e:
   logging.error("../data/cleaned_train.csv was not found ")
   logging.debug(e)
 
-try:
-    test_data = pd.read_csv("../data/test.csv")
-except FileNotFoundError as e:
-  logging.error("../data/test.csv was not found ")
-  logging.debug(e)
+test_data = read_testing_data()
 test_ids = test_data['Id']
 
-
 try:
-    test_data = pd.read_csv("../data/cleaned_test.csv")
+    cleaned_test_data = pd.read_csv("../data/cleaned_test.csv")
 except FileNotFoundError as e:
   logging.error("../data/cleaned_test.csv was not found ")
   logging.debug(e)
-
+test_ids = test_data['Id']
 
 # Model
-y = train_data['SalePrice']
-X = train_data.drop(['SalePrice'], axis=1)
+y = cleaned_train_data['SalePrice']
+X = cleaned_train_data.drop(['SalePrice'], axis=1)
 
 candidate_max_leaf_nodes = [250]
 # model = LinearRegression()
@@ -62,9 +58,9 @@ except Exception as e:
         logging.error('Error: Random Forest Regressor could not be built')
         logging.debug(e)
 
-
+logging.info("Predicting...")
 # Output
-price = model.predict(test_data)
+price = model.predict(cleaned_test_data)
 submission = pd.DataFrame({
     "Id": test_ids,
     "SalePrice": price

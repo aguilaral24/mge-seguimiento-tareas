@@ -1,7 +1,7 @@
 import logging
 #COnfigure logging
 logging.basicConfig(
-    filename='../logs/T_03-eda.log',
+    filename='../logs/eda.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')

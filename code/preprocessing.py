@@ -1,7 +1,7 @@
 import logging
 #Configure logging
 logging.basicConfig(
-    filename='../logs/T_03-preprocessing.log',
+    filename='../logs/preprocessing.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
@@ -11,7 +11,7 @@ import libraries
 """
 import pandas as pd
 import seaborn as sns
-from functions import read_trainning_data, read_trainning_data,fill_missings_with_No,fill_all_missing_values
+from functions import read_trainning_data, read_testing_data,fill_missings_with_No,fill_all_missing_values
 
 # Preprocessing
 from sklearn.preprocessing import OrdinalEncoder
@@ -23,7 +23,7 @@ logging.info('*****Beggining of preprocessing*****')
 train_data = pd.DataFrame()
 train_data = read_trainning_data()
 test_data = pd.DataFrame()
-test_data = read_trainning_data()
+test_data = read_testing_data()
 
 logging.info('Preprocessing-Filling missing data. with "No"...')
 # Fill missing data
