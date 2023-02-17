@@ -2,6 +2,7 @@
 ### Author: García Aguilar Luis Alberto
 
 Description: The proyect contains the next stages:
+
                 1. Load data
                     inputs: 
                         * training set file (csv)
